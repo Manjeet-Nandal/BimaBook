@@ -1,0 +1,323 @@
+{%extends "base.html"%}
+{%block content%}
+{% load static %}
+<main class="app-main">
+   <!-- .wrapper -->
+   <div class="wrapper">
+      <!-- .page -->
+      <div class="page">
+         <!-- .page-inner -->
+         <div class="page-inner">
+            <!-- .page-title-bar -->
+            <header class="page-title-bar">
+               <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                     {% for value in data %} 
+                     <li class="breadcrumb-item">
+                        <a href=""><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Payout Slabs</a>
+                        {% comment %} {% 'bima_policy:slab_payout' value.slab_name %}
+                        {% 'bima_policy:slab_payout' value.slab_name%} {% endcomment %}
+                     </li>
+                     <li class="breadcrumb-item">
+                        <a href="">{{value.slab_name}}</a>
+                     </li>
+                     <li class="breadcrumb-item active">
+                        <a href="javascript:void();">New Payout</a>
+                     </li>
+                     {% endfor %}
+                  </ol>
+               </nav>
+               <h1 class="page-title"> Payout Form <small class="text-muted">All * marks Fields are mandatory. </small></h1>
+            </header>
+            <!-- .page-section -->
+            <div class="page-section">
+               <!-- .section-block -->
+               <div class="section-block">
+                  <!-- page content goes here -->
+                  <form name="frmpayout" method="post" autocomplete="off" data-parsley-validate="true" action="{% url 'bima_policy:slab_payoutform'%}">
+                     {% csrf_token %}
+                     <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-12">
+                           <div class="card">
+                              <!-- .card -->
+                              <div class="card-body">
+                                 <!-- .card-body -->
+                                 <!-- .content -->
+                                 <fieldset>
+                                    <!-- fieldset -->
+                                    <legend class="mb-2">Payout Details</legend>
+                                    <div class="form-row">
+                                       <div class="col-md-6 mb-3">
+                                          <label>Payout Name <abbr title="Required" class="text-danger">*</abbr></label>
+                                          <input type="text" name="payout_name" value="" class="form-control" placeholder="All RTO of HR except GGN &amp; FDB"> 
+                                       </div>
+                                       <div class="col-md-3 mb-3">
+                                          <input type="hidden" value="0" required="" name="payout_id" readonly="">
+                                          <label>Slab <abbr title="Required" class="text-danger">*</abbr></label>
+                                          <select name="slab" id="slab" data-parsley-required="true" data-parsley-required-message="" class="custom-select" >
+                                             <option value="">Select</option>
+                                             {% for value in slab %}
+                                             <option value="{{value.slab_name}}">{{value.slab_name}}</option>
+                                             {% endfor %}
+                                          </select>
+                                       </div>
+                                       <div class="col-md-3 mb-3">
+                                          <label>Status <abbr title="Required" class="text-danger">*</abbr></label>
+                                          <select name="status" id="status" data-parsley-required="true" data-parsley-required-message="" class="custom-select" >
+                                             <option value="Active">Active</option>
+                                             <option value="Inactive">Inactive</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                    <hr class="mb-2 mt-2">
+                                    <div class="form-group">
+                                       <label class="d-block">Vehicle Category</label>
+                                       <div class="form-group">
+                                          <select name="vehicle_category"  class="custom-select select select-hidden-accessible" aria-hidden="true" >
+                                            <option value="any">any</option>
+                                            {%for item in vcat %}
+                                            <option value="{{item.category}}">{{item.category}}</option>
+                                            {%endfor%}
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-2 mt-2">
+                                    <div class="form-group">
+                                       <label class="d-block">Insurance Company</label>
+                                       <div class="form-group">
+                                          <select name="ins_com"  class="custom-select select select-hidden-accessible" aria-hidden="true" >
+                                            <option value='any'>any</option>
+                                            {%for item in ins_comp %}
+                                            <option value="{{item.comp_name}}">{{item.comp_name}}</option>
+                                            {%endfor%}
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-2 mt-2">
+                                    <div class="form-group">
+                                       <label class="d-block">Policy Provider</label>
+                                       <div class="form-group">
+                                          <select name="policy_provider"  class="custom-select select select-hidden-accessible" aria-hidden="true" >
+                                            <option value='any'>any</option>
+                                            {%for item in pol_provider %}
+                                            <option value="{{item.full_name}}">{{item.full_name}}</option>
+                                            {%endfor%}
+                                          </select>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-2 mt-2">
+                                    <div class="form-group">
+                                       <label class="d-block">Vehicle Make By</label>
+                                       <div class="form-group">
+                                          <select name="vehicle_make_by"  class="custom-select select select-hidden-accessible" aria-hidden="true"  >
+                                            <option value='any'>any</option>
+                                            {%for item in vmb %}
+                                            <option value="{{item.company}}">{{item.company}}</option>
+                                            {%endfor%}
+                                          </select>
+                                        </div>
+                                       
+                                    </div>
+                                    <hr class="mb-2 mt-2">
+                                    <div class="form-group">
+                                       <label>RTOs<abbr title="Required" class="text-danger">*</abbr></label>
+                                       {% comment %} <div class="bootstrap-tagsinput"><input type="text" placeholder="eg: HR26"></div> {% endcomment %}
+                                       <input type="text" class="form-control" id="rto" placeholder="eg: HR26" name="rtos" data-role="tagsinput" style="display: none;">
+                                    </div>
+                                 </fieldset>
+                                 <p class="mb-1"></p>
+                              </div>
+                              <!-- /.card-body -->
+                           </div>
+                           <!-- /.card -->
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12">
+                           <div class="card">
+                              <!-- .card -->
+                              <div class="card-body">
+                                 <!-- .card-body -->
+                                 <h4 class="card-title mb-3">Payout General </h4>
+                                 {% comment %} <div class="row mb-2">
+                                    <label class="col-lg-4">Case Type <abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-8 pl-0 pr-0"> 
+                                  <div class="dropdown bootstrap-select show-tick" style="width: 100%;">
+                                 <select name="case_type[]" onchange="$(this).parsley().validate();" id="case_type" data-parsley-required="true" data-parsley-required-message="" data-toggle="selectpicker" data-actions-box="true" data-width="100%" multiple="" data-parsley-multiple="case_type[]" class="">
+                                  <option value="3">Breakin</option>
+                                 <option value="1">New</option>
+                                 <option value="2">Rollover</option>
+                               </select><button type="button" tabindex="-1" class="custom-select dropdown-toggle bs-placeholder" data-toggle="dropdown" role="combobox" aria-owns="bs-select-1" aria-haspopup="listbox" aria-expanded="false" data-id="case_type" title="Nothing selected"><div class="filter-option"><div class="filter-option-inner"><div class="filter-option-inner-inner">Nothing selected</div></div> </div></button><div class="dropdown-menu "><div class="dropdown-arrow"></div><div class="bs-actionsbox"><div class="btn-group btn-group-sm btn-block"><button type="button" class="actions-btn bs-select-all btn btn-light">Select All</button><button type="button" class="actions-btn bs-deselect-all btn btn-light">Deselect All</button></div></div><div class="inner show" role="listbox" id="bs-select-1" tabindex="-1" aria-multiselectable="true"><ul class="dropdown-menu inner show" role="presentation"></ul></div></div></div>
+                                    </div>
+                                </div>                  {% endcomment %}
+                                  <div class="row mb-2">
+                                    
+                                       <label class="col-lg-5">Case TYpe<abbr title="Required" class="text-danger">*</abbr></label>
+                                       <div class="col-lg-7 pl-0 pr-0">
+                                          <select name="casetype" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                             <option value="">Choose </option>
+                                             <option value="Breakin">Breakin</option>
+                                             <option value="New">New</option>
+                                             <option value="Rollover">Rollover</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                    
+                                           
+                                       
+                                          
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Coverage<abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-7 pl-0 pr-0">
+                                       <select name="coverage" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                          <option value="">Choose </option>
+                                          <option value="Comp">Comp</option>
+                                          <option value="SAOD">SAOD</option>
+                                          <option value="TP">TP</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                    
+                                    
+                               
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Fuel Type<abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-7 pl-0 pr-0">
+                                       <select name="fueltype" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                          <option value="">Choose </option>
+                                          <option value="Petrol">Petrol</option>
+                                          <option value="Diesel">Diesel</option>
+                                          <option value="CNG">CNG</option>
+                                          <option value="Electric">Electric</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                           
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">CPA<abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-7 pl-0 pr-0">
+                                       <select name="cpa" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                          <option value="">Choose </option>
+                                          <option value="YES">YES</option>
+                                          <option value="NO">NO</option>
+                                        
+                                       </select>
+                                    </div>
+                                 </div>
+
+                                 <h4 class="card-title mb-3">Agent Payout </h4>
+                                 <!-- grid row -->
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Rewards On <abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-7 pl-0 pr-0">
+                                       <select name="areward_on" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                          <option value="">Choose </option>
+                                          <option value="OD">OD</option>
+                                          <option value="NET">NET</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Rewards % <abbr title="Required" class="text-danger">*</abbr></label><input type="text" value="" name="areward_pct" class="form-control maskNumField col-lg-7 rewardpct" data-mask-as-number-decimals="2" data-parsley-required="true" min="0" max="100" maxlength="4">
+                                 </div>
+                                 <hr>
+                                 <h4 class="card-title mb-3">Self Payout </h4>
+                                 <!-- grid row -->
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Rewards On <abbr title="Required" class="text-danger">*</abbr></label>
+                                    <div class="col-lg-7 pl-0 pr-0">
+                                       <select name="sreward_on" data-parsley-required="true" data-parsley-required-message="" class="custom-select">
+                                          <option value="">Choose </option>
+                                          <option value="OD">OD</option>
+                                          <option value="NET">NET</option>
+                                       </select>
+                                    </div>
+                                 </div>
+                                 <div class="row mb-2">
+                                    <label class="col-lg-5">Rewards %<abbr title="Required" class="text-danger">*</abbr></label><input type="text" value="" name="sreward_pct" class="form-control maskNumField rewardpct col-lg-7" data-mask-as-number-decimals="2" data-parsley-required="true" min="0" max="100" maxlength="4">
+                                 </div>
+                              </div>
+                              <!-- /.card-body -->
+                           </div>
+                           <!-- /.card -->
+                        </div>
+                     </div>
+                     <hr>
+                     <div class="form-row">
+                        <div class="col-md-12 col-sm-12">
+                           <a href="" class="btn btn-secondary w-100p float-left">Back</a>
+                           <span class="float-right">
+                           <button type="submit" name="savepayout" class="btn btn-success w-100p">Save</button>
+                           </span>
+                        </div>
+                     </div>
+                  </form>
+                  <!-- /form -->
+               </div>
+               <!-- /.section-block -->
+            </div>
+            <!-- /.page-section -->
+         </div>
+         <!-- /.page-inner -->
+      </div>
+      <!-- /.page -->
+   </div>
+   <!-- /.wrapper -->
+</main>
+<!-- /.app-main -->
+<div class="aside-backdrop"></div>
+</div><!-- /.app -->
+<div class="modal modal-alert fade" id="ModalAlertError" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAlertErrorLabel" aria-hidden="true">
+   <!-- .modal-dialog -->
+   <div class="modal-dialog" role="document">
+      <!-- .modal-content -->
+      <div class="modal-content">
+         <!-- .modal-header -->
+         <div class="modal-header">
+            <h5 class="modal-title">
+               <i class="fa fa-exclamation-triangle text-red mr-1"></i> System Error 
+            </h5>
+         </div>
+         <!-- /.modal-header -->
+         <!-- .modal-body -->
+         <div class="modal-body">
+            <p>The Code Execution cannot proceed due to system error, retry after refreshing the page if the error remains the same, you need to contact your Administrator immediately.</p>
+         </div>
+         <!-- /.modal-body -->
+         <!-- .modal-footer -->
+         <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-dismiss="modal">OK</button>
+         </div>
+         <!-- /.modal-footer -->
+      </div>
+      <!-- /.modal-content -->
+   </div>
+   <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<!-- BEGIN BASE JS -->
+
+<script src="{%static 'js/jquery.min.js' %}"></script> 
+{% comment %} <script src="{%static 'js/popper.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.min.js' %}"></script> <!-- END BASE JS --> {% endcomment %}
+<!-- BEGIN PLUGINS JS -->
+{% comment %} <script src="{% static 'js/pace.min.js' %}"></script> {% endcomment %}
+{% comment %} <script src="{% static 'js/stacked-menu.min.js' %}"></script>
+<script src="{% static 'js/perfect-scrollbar.min.js'%}"></script><!-- END PLUGINS JS -->
+<!-- Parsley -->
+<script src="{%static 'js/parsley.js' %}"></script> {% endcomment %}
+<!-- BEGIN THEME JS -->
+{% comment %} <script src="{%static 'js/theme.js' %}"></script> 
+<script src="{%static 'js/toastr.min.js' %}"></script>
+<script src="{%static 'js/flatpickr.min.js' %}"></script> {% endcomment %}
+{% comment %} <script src="{%static 'js/select2.full.min.js' %}"></script>
+<script src="{%static 'js/moment.js' %}"></script>
+<script src="{%static 'js/mask-as-number.min.js' %}"></script>
+<script src="{%static 'js/jquery.dataTables.min.js' %}"></script> {% endcomment %}
+{% comment %} <script src="{%static 'js/dataTables.bootstrap.js' %}"></script>
+<script src="{%static 'js/jquery.form.js' %}"></script>
+<script src="{%static 'js/custom.min.js' %}"></script> {% endcomment %}
+{% comment %} <script type="text/javascript" src="{%static 'js/bootstrap-select.min.js' %}"></script> {% endcomment %}
+{% comment %} <script type="text/javascript" src="{%static 'js/filter-multi-select.js' %}"></script> {% endcomment %}
+<script type="text/javascript" src="{%static 'js/bootstrap-tagsinput.min.js' %}"></script>
+{% comment %} <script type="text/javascript" src="{%static 'js/payouts.min.js' %}"></script>  {% endcomment %}
+</body></html>
+{%endblock%}

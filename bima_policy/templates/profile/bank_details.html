@@ -1,0 +1,174 @@
+{%extends "base.html"%}
+
+{%block content%}
+{% load static %}
+		<main class="app-main"><!-- .app-main -->
+			<div class="wrapper"><!-- .wrapper -->
+				<div class="page">
+					<div class="masonry-layout">
+					  <!-- .masonry-item -->
+					  <div class="masonry-item col-lg-12 pt-5">
+						<!-- .card -->
+						<div class="card card-fluid u-profile">
+						 <div class="card-body pt-2">
+							<!-- grid row -->
+							<div class="row align-items-center mb-3">
+							  <!-- grid column -->
+							  <div class="col-auto">
+								<!-- .user-avatar -->
+								<a href="javascript:;" class="user-avatar user-avatar-floated user-avatar-xl"><img src="{% static 'images/user.png' %}" alt=""></a> <!-- /.user-avatar -->
+							  </div><!-- /grid column -->
+							  <!-- grid column -->
+							  <!-- .col -->
+							  {% for value in pdata %}
+							  <div class="col">
+								<h3 class="card-title">
+								  <a href="javascript:;">{{value.full_name}}</a>
+								</h3>
+								<h6 class="card-subtitle text-muted"> {{value.full_name}} </h6>
+							  </div><!-- /.col -->
+							  <!-- /grid column -->
+							  <!-- grid column -->
+							  <div class="col-md-4 col-lg-4 col-sm-12 text-right mt-2">
+								<a href="javascript:;" class="btn btn-outline-secondary">Joining Date : {{value.created_at}}</a>
+							  </div><!-- /grid column -->
+							  {% endfor %}
+							</div><!-- /grid row -->
+							<!-- grid row -->
+						  </div><!-- /.card-body -->
+						</div><!-- /.card -->
+					  </div><!-- /.masonry-item -->
+					</div><!-- /.masonry-layout -->
+					<!-- .page-navs -->
+					<nav class="page-navs">
+					  <!-- .nav-scroller -->
+					  <div class="nav-scroller">
+						<!-- .nav -->
+						<div class="nav nav-tabs">
+							<a class="nav-link " href="{%url 'bima_policy:profile'%}">Profile</a>
+							<a class="nav-link active" href="{%url 'bima_policy:bank_det'%}">Bank Details</a> 
+						</div><!-- /.nav -->
+					  </div><!-- /.nav-scroller -->
+					</nav><!-- /.page-navs -->
+					<div class="page-inner">
+	<!-- .page-section -->
+	<div class="page-section">
+		<!-- .card -->
+		<div class="card card-fluid">
+			<div class="card-header">
+				Banks Account Numbers
+				<button data-toggle="modal" data-target="#mdlbanks" class='btn btn-secondary btn-sm float-right'><i class="fa fa-plus"></i> Add New</button>
+			</div>
+			<div class="card-body">
+				<!-- .table -->
+
+				<div class="table-responsive">
+					<table id="tblList" class="table table-bordered1">
+						<thead>
+							<tr>
+								<th>Sr. No.</th>
+								<th>Beneficiary Name</th>
+								<th>A/C No.</th> 	
+								<th>Bank Name</th>
+								<th>#</th>
+							</tr>
+						</thead>
+						<tbody>
+							{%for value in bdata%}
+							<tr>
+								<td>{{forloop.counter}}</td>
+								<td>{{value.beneficiary_name}}</td>
+								<td>{{value.acc_no}}</td>
+								<td>{{value.bank_name}}</td>
+								<td>
+									<form method='POST' action="{% url 'bima_policy:del_bank' value.id %}" >
+										{% csrf_token %}
+										<button type='submit' class="mr-1 btn btn-sm btn-icon btn-secondary"  name="delete" >
+											<i class="fa fa-trash-alt text-danger" aria-hidden="true"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+							{%endfor%}
+						</tbody>
+					</table>
+				</div>
+			</div><!-- /.card-body -->
+		</div>
+		<div class="modal fade" id="mdlbanks" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="inscompModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title"> Add New Bank </h5>
+					</div>
+					<form method="post" autocomplete="off" data-parsley-validate="true" name="post" action="">
+						{% csrf_token %}
+						<div class="modal-body">
+							<div class="form-group">
+								<label class="form-label" >Beneficiary Name<em class="text-danger">*</em></label>
+								<input type="text" class='form-control' data-parsley-pattern="^(?:[A-Za-z]+[- ])*[A-Za-z]+$" data-parsley-required="true" name="beneficiary_name" id="beneficiary_name">
+								
+							</div>
+							<div class="form-group">
+								<label class="col-form-label" >Account Number<em class="text-danger">*</em></label>
+								<input type="text" class="form-control " placeholder="Only numeric & maximum 18 digit" data-parsley-required="true" data-parsley-error-message="Only Numeric Value" data-parsley-minlength="10" data-parsley-maxlength="18" data-parsley-pattern="^[0-9]+$" name="account_number" maxlength="18">
+							</div>
+							<div class="form-group">
+								<label class="col-form-label" >Bank Name<em class="text-danger">*</em></label>
+								<input type="text" class='form-control' data-parsley-pattern="^(?:[A-Za-z]+[- ])*[A-Za-z]+$" data-parsley-required="true" name="bank_name" id="bank_name">
+							</div>
+						</div>
+						<div class="modal-footer">
+						
+							<button type="button" class="btn btn-secondary w-100p" data-dismiss="modal">Close</button>
+							<button type="submit" name="bankadd" class="btn btn-primary w-100p" >Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>	
+		<div class="modal fade" id="mdlbanksdel" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 id="ModalLabel" class="modal-title" >Confirmation</h5>
+					</div>
+					<div class="modal-body">
+						<p>Do you want to Remove Selected Bank Details</p>	
+					</div>
+					<div class="modal-footer">
+						{% comment %} <form method='POST' name="del_bank">
+							{%for value in bankdata%}
+							<button type="button" class="btn btn-secondary w-100p" data-dismiss="modal">No</button>
+							<input type="submit" id={{value.id}} class="btn btn-primary w-100p" value="Yes">
+							<input type="hidden" id="bankid" readonly>
+							{%endfor%}
+						</form> {% endcomment %}
+					</div>
+				</div>
+			</div>
+		</div>						
+		</div>
+	</div>
+</div>
+			</div>
+      </main>
+    </div>
+    <div class="modal modal-alert fade" id="ModalAlertError" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAlertErrorLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+	  <div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">
+			<i class="fa fa-exclamation-triangle text-red mr-1"></i> System Error </h5>
+		</div>
+		<div class="modal-body">
+		  <p>The Code Execution cannot proceed due to system error, retry after refreshing the page if the error remains the same, you need to contact your Administrator immediately.</p>
+		</div>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-light" data-dismiss="modal">OK</button>
+		</div>
+	  </div>
+	</div>
+</div>
+
+{%endblock%}

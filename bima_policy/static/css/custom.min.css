@@ -1,0 +1,240 @@
+.rewardpct ~ ul.parsley-errors-list,
+div.flatpickr ul.parsley-errors-list,
+div.input-group ul.parsley-errors-list {
+    display: none;
+}
+.input-group > .custom-select:not(:first-child),
+.input-group > .form-control:not(:first-child) {
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+label {
+    font-size: 13px;
+    color: #888c9b;
+}
+.card-inverse label {
+    color: #fff !important;
+}
+.card-inverse label abbr {
+    color: #afafaf !important;
+}
+.select2-hidden-accessible.parsley-error ~ ul ~ .select2-container--default .select2-selection--single {
+    color: #b76ba3 !important;
+    border: 1px solid #b76ba3 !important;
+}
+.w-100p {
+    min-width: 100px;
+}
+.w-10pc {
+    width: 10%;
+}
+.w-20pc {
+    width: 20%;
+}
+.modal-header {
+    padding: 0.5rem;
+    background: #d2d4d6;
+    margin-bottom: 10px;
+}
+.btn-payout-close {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    padding: 0;
+    height: fit-content !important;
+}
+.btn-payout-close .badge {
+    font-weight: 100 !important;
+}
+.no-wrap {
+    white-space: nowrap;
+}
+.modal-header h5,
+.modal-header h6 {
+    font-weight: 400;
+    font-size: 15px;
+}
+.page-title-bar {
+    margin-bottom: 1rem;
+}
+.modal-footer .custom-checkbox {
+    flex: auto;
+}
+.bootstrap-tagsinput {
+    width: 100%;
+}
+.bootstrap-tagsinput span.label-info {
+    text-transform: uppercase;
+    margin: 0.125rem 0.25rem 0.125rem 0;
+    padding: 12px 5px;
+    display: inline-flex;
+    height: 1em;
+    color: #363642;
+    border-radius: 5px;
+    align-items: center;
+    vertical-align: baseline;
+    background-color: #e6e8ed !important;
+    border: 1px solid #aaa;
+    white-space: nowrap;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+    font-weight: 900;
+    cursor: pointer;
+    width: 1rem;
+    height: 1rem;
+    font-size: 10px;
+    line-height: 1rem;
+    background-color: #a6abbd;
+    text-align: center;
+    border-radius: 0.5rem;
+    margin-left: 0.25rem;
+    position: relative;
+    text-transform: lowercase;
+    color: #fff;
+}
+.show-tick > ul.parsley-errors-list {
+    position: absolute;
+    top: 37px;
+    left: 0;
+}
+.table-policy-payout td,
+.table-policy-payout th {
+    padding: 6px;
+}
+.table td {
+    padding: 0.5rem;
+    vertical-align: middle;
+}
+.table th {
+    padding-left: 0.25rem;
+}
+select.parsley-error ~ button.custom-select {
+    color: #c50000 !important;
+    border: 1px solid #c50000 !important;
+}
+::-webkit-input-placeholder {
+    font-size: 10pt;
+}
+::-moz-placeholder {
+    font-size: 10pt;
+}
+:-ms-input-placeholder {
+    font-size: 10pt;
+}
+:-moz-placeholder {
+    font-size: 10pt;
+}
+.modal-scroll {
+    height: 480px;
+    overflow-y: scroll;
+}
+.drag-indicator-block {
+    margin: 0.4em 0.8em 0 0;
+    cursor: no-drop;
+    font-size: 11px;
+    color: #e02323;
+}
+table.dataTable tbody tr.selected {
+    background-color: #f0f0f0;
+}
+table {
+    text-transform:uppercase!important;
+}
+.select2-results__option,select,option,.select2-selection__rendered{
+	text-transform:uppercase!important;
+}
+.select2 {
+    font-weight: 100;
+}
+
+.pos-rel,
+.position-relative {
+    position: relative;
+}
+.checkbox {
+    cursor: pointer;
+}
+.k-upload-button {
+    margin: 0 !important;
+    padding: 8px 14px !important;
+}
+.k-widget {
+    border-radius: 0.25rem !important;
+    border: 1px solid #c6c9d5 !important;
+}
+.k-content {
+    background-color: transparent !important;
+    border-radius: 0.25rem !important;
+}
+.ajax-progressBar {
+    background: #e9ecef;
+    left: 0;
+    padding: 0;
+    width: 100%;
+    height: 14px;
+    display: none;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+    margin-bottom: 4px;
+}
+.ajax-progressBar .postProgress {
+    text-align: center;
+    width: 0%;
+    max-width: 100%;
+    font-size: 10px;
+    color: #fff;
+    height: 14px;
+    background: #346cb0;
+    border-radius: 0;
+    background-image: -webkit-gradient(
+        linear,
+        0 100%,
+        100% 0,
+        color-stop(0.25, rgba(255, 255, 255, 0.15)),
+        color-stop(0.25, transparent),
+        color-stop(0.5, transparent),
+        color-stop(0.5, rgba(255, 255, 255, 0.15)),
+        color-stop(0.75, rgba(255, 255, 255, 0.15)),
+        color-stop(0.75, transparent),
+        to(transparent)
+    );
+    background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: -moz-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
+    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+    -webkit-transition: width 0.6s ease;
+    transition: width 0.6s ease;
+    -webkit-animation: progress-bar-stripes 2s linear infinite;
+    -moz-animation: progress-bar-stripes 2s linear infinite;
+    -ms-animation: progress-bar-stripes 2s linear infinite;
+    -o-animation: progress-bar-stripes 2s linear infinite;
+    animation: progress-bar-stripes 2s linear infinite;
+}
+.flatpickr-monthDropdown-months{
+	height: calc(0.75em + 0.75rem + 2px) !important;
+	
+}
+.numInputWrapper span{
+	right: -13px !important;
+}
+.numInput {
+	height: calc(0.75em + 0.75rem + 2px) !important;
+	font-weight: 500 !important;
+}
+.hamburger {
+    background:transparent
+}
+.fs-24{font-size:24px;}
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+}
+.u-profile{
+    border-bottom: 1px solid #ddd;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    margin-bottom: 0;
+}

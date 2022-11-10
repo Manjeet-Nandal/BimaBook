@@ -1,0 +1,128 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static %}
+<main class="app-main"><!-- .app-main -->
+    <div class="wrapper"><!-- .wrapper -->
+        <div class="page "><!-- .page -->
+            <div class="page-inner"> <!-- .page-inner -->
+                <header class="page-title-bar"><!-- .page-title-bar -->
+                <div class="d-flex justify-content-between align-items-center"><!-- .d-flex -->
+                    <!-- .breadcrumb -->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active">
+                                <a href="{%url 'bima_policy:staff'%}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Back</a>
+                            </li>
+                        </ol>
+                    </nav><!-- /.breadcrumb -->
+                </div><!-- /.d-flex -->
+                <!-- grid row -->
+                <div class="row text-center text-sm-left">
+                    <!-- grid column -->
+                    <div class="col">
+                        <h1 class="page-title"> Staff Form  <small class="text-muted"> All * marks Fields are mandatory. </small></h1>
+                    </div><!-- /grid column -->
+                </div><!-- /grid row -->
+                </header>
+                <!-- .page-section -->
+                <div class="page-section">
+                    <!-- grid row -->
+                    <div class="row">
+                        <!-- grid column -->
+                        <div class="col-lg-4">
+                            <!-- .card -->
+                            <div class="card card-fluid">
+                                <h6 class="card-header"> Staff Details </h6><!-- .nav -->
+                                <nav class="nav nav-tabs flex-column border-0">
+                                    <a href="#tab_staff_profile" data-toggle="tab" class="nav-link active">Profile</a> 
+                                    <a href="#tab_staff_password" data-toggle="tab" class="nav-link ">Password</a> 
+                                </nav><!-- /.nav -->
+                            </div><!-- /.card -->
+                        </div><!-- /grid column -->
+                        <!-- grid column -->
+                        <div class="col-lg-8">
+                            <!-- .card -->
+                            <div class="card card-fluid">
+                                <h6 class="card-header">Update Staff</h6><!-- .card-body -->
+                                <div class="card-body">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade active show" id="tab_staff_profile">
+                                            <form method="post" name="frmprofile" data-parsley-validate="true" novalidate="">
+                                                {% csrf_token %}
+                                                {%for value in data%}
+                                                 <div class="form-row">
+                                                     <label class="col-md-3">Login ID </label>
+                                                     <div class="col-md-9 mb-3">
+                                                       <input type="text" class="form-control" value="{{value.login_id}}" disabled="">
+                                                     </div>
+                                                 </div>
+                                                 <div class="form-row">
+                                                     <label class="col-md-3">Full Name <abbr title="Required" class="text-danger">*</abbr></label>
+                                                     <div class="col-md-9 mb-3">
+                                                         <input type="text" class="form-control" value="{{value.staffname}}" data-parsley-pattern="^(?:[A-Za-z]+[- ])*[A-Za-z]+$" data-parsley-required="true" name="full_name">
+                                                     </div>
+                                                 </div>
+                                                 {%endfor%}
+                                                <div class="form-row">
+                                                    <!-- form column -->
+                                                    <label class="col-md-3">Status <abbr title="Required" class="text-danger">*</abbr></label> <!-- /form column -->
+                                                    <!-- form column -->
+                                                    <div class="col-md-9 mb-3">
+                                                        <select name="status" class="custom-select">
+                                                            <option value="Active" selected="">Active</option>
+                                                            <option value="Inactive">Inactive</option>
+                                                        </select>
+                                                    </div><!-- /form column -->
+                                                </div>
+                                             <hr>
+                                              <!-- .form-actions -->
+                                              <div class="form-actions">
+                                                <button type="submit" name="profile" class="btn btn-primary text-nowrap ml-auto">Update Account</button>
+                                              </div><!-- /.form-actions -->
+                                            </form><!-- /form -->
+                                        </div>
+                                        <div class="tab-pane fade" id="tab_staff_password">
+                                            <form method="post" name="frmpassword" data-parsley-validate="true" novalidate="">
+                                                <input type="hidden" readonly="" value="YTmIspiAtKtPP k7BiTayVTGOKuH/lhZ5SEKgAGf//zFifu2pMA76hwYmP6tRdrmW9nuhArF7dvtCUvqw5OPEaDrmvKat04eJ1TRtevaOdM=" name="datafor">
+                                                <!-- form row -->
+                                                <div class="form-row mb-3">
+                                                    <!-- form column -->
+                                                    <label for="password" class="col-md-3">New Password <abbr title="Required" class="text-danger">*</abbr></label> <!-- /form column -->
+                                                    <!-- form column -->
+                                                    <div class="col-md-8">
+                                                        <input type="password" id="password" name="password" class="form-control" data-parsley-minlength="6" data-parsley-maxlength="15" data-parsley-required="true">
+                                                        <small class="text-muted">Password should be Minimum 6 to 20 characters with different classes of characters in password. Classes of characters is: Lower Case, Upper Case, Digits, Special Characters.</small>
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <a href="#password" data-toggle="password"><i class="fa fa-eye fa-fw"></i> <span>Show</span></a>
+                                                    </div>
+                                                </div>
+                                                <div class="form-row mb-3">
+                                                    <!-- form column -->
+                                                    <label for="confirm_password" class="col-md-3">Confirm Password <abbr title="Required" class="text-danger">*</abbr></label> <!-- /form column -->
+                                                    <!-- form column -->
+                                                    <div class="col-md-8">
+                                                        <input type="password" id="confirm_password" name="confirm_password" data-parsley-error-message="Current password &amp; confirm password should be same" data-parsley-equalto="#password" class="form-control" data-parsley-required="true">
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <a href="#confirm_password" data-toggle="password"><i class="fa fa-eye fa-fw"></i> <span>Show</span></a>
+                                                    </div>
+                                                </div>
+                                             <hr>
+                                              <!-- .form-actions -->
+                                              <div class="form-actions">
+                                                <button type="submit" name="security" class="btn btn-primary text-nowrap ml-auto">Update Password</button>
+                                              </div><!-- /.form-actions -->
+                                            </form><!-- /form -->
+                                        </div>
+                                    </div>
+                                </div><!-- /.card-body -->
+                            </div><!-- /.card -->
+                        </div><!-- /grid column -->
+                    </div><!-- /grid row -->
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+    </div><!-- /.wrapper -->
+</main>
+{%endblock%}

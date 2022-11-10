@@ -1,0 +1,180 @@
+{%extends "base.html"%}
+
+{%block content%}
+{% load static %}
+<main class="app-main"><!-- .app-main -->
+    <div class="wrapper">
+        <!-- .wrapper -->
+        <div class="page">
+            <div class="masonry-layout">
+              <!-- .masonry-item -->
+              <div class="masonry-item col-lg-12 pt-5">
+                <!-- .card -->
+                <div class="card card-fluid u-profile">
+                 <div class="card-body pt-2">
+                    <!-- grid row -->
+                    <div class="row align-items-center mb-3">
+                      <!-- grid column -->
+                      <div class="col-auto">
+                        <!-- .user-avatar -->
+                        <a href="javascript:;" class="user-avatar user-avatar-floated user-avatar-xl"><img src="{% static 'images/user.png' %}" alt=""></a> <!-- /.user-avatar -->
+                      </div><!-- /grid column -->
+                      <!-- grid column -->
+                      <!-- .col -->
+                      {% for value in data %}
+                      <div class="col">
+                        <h3 class="card-title">
+                          <a href="javascript:;">{{value.full_name}}</a>
+                        </h3>
+                        <h6 class="card-subtitle text-muted">{{value.full_name}} </h6>
+                      </div><!-- /.col -->
+                      <!-- /grid column -->
+                      <!-- grid column -->
+                      <div class="col-md-4 col-lg-4 col-sm-12 text-right mt-2">
+                        <a href="javascript:;" class="btn btn-outline-secondary">Joining Date : {{value.created_at}}</a>
+                      </div><!-- /grid column -->
+                    </div><!-- /grid row -->
+                    <!-- grid row -->
+                  </div><!-- /.card-body -->
+                </div><!-- /.card -->
+              </div><!-- /.masonry-item -->
+            </div><!-- /.masonry-layout -->
+            <!-- .page-navs -->
+            <nav class="page-navs">
+              <!-- .nav-scroller -->
+              <div class="nav-scroller">
+                <!-- .nav -->
+                <div class="nav nav-tabs">
+                    <a class="nav-link active" href="{%url 'bima_policy:profile'%}">Profile</a>
+                    <a class="nav-link " href="{%url 'bima_policy:bank_det'%}">Bank Details</a> 
+                </div><!-- /.nav -->
+              </div><!-- /.nav-scroller -->
+            </nav><!-- /.page-navs -->
+            <div class="page-inner">
+<!-- .page-section -->
+<div class="page-section">
+<!-- grid row -->
+<div class="row">
+    <!-- grid column -->
+    <div class="col-lg-4">
+        <!-- .card -->
+        <div class="card card-fluid">
+            <h6 class="card-header"> Profile Details </h6><!-- .nav -->
+            <nav class="nav nav-tabs flex-column border-0">
+                <a href="#tab_general_details" data-toggle="tab" class="nav-link active">General Details</a> 
+                <a href="#tab_password" data-toggle="tab" class="nav-link ">Password</a> 
+                <a href="#two_wayauth" data-toggle="tab" class="nav-link ">Two-factor authentication</a> 
+            </nav><!-- /.nav -->
+        </div><!-- /.card -->
+    </div><!-- /grid column -->
+    <!-- grid column -->
+    <div class="col-lg-8">
+        <!-- .card -->
+        <div class="card card-fluid">
+            <h6 class="card-header">Profile</h6><!-- .card-body -->
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="tab_general_details">
+                        <!-- form row -->
+                        <div class="form-row">
+                            <!-- form column -->
+                            <label class="col-md-3">Full Name<abbr title="Required" class="text-danger">*</abbr></label>
+                            <div class="col-md-9 mb-3">
+                                <p class="form-control">{{value.full_name}}</p>
+                            </div><!-- /form column -->
+                        </div>
+                        <div class="form-row">
+                            <label class="col-md-3">Personal Email Id<abbr title="Required" class="text-danger">*</abbr></label>
+                            <div class="col-md-9 mb-3">
+                                <p class="form-control">{{value.email}}</p>
+                            </div><!-- /form column -->
+                        </div>
+                        <div class="form-row">
+                            <label class="col-md-3">Mobile No<abbr title="Required" class="text-danger">*</abbr></label>
+                            <div class="col-md-9 mb-3">
+                                <p class="form-control">{{value.mob_no}}</p>
+                            </div>
+                        </div>				
+                        <div class="form-row">
+                            <label class="col-md-3">State &amp; City <abbr title="Required" class="text-danger">*</abbr></label>
+                            <div class="col-md-9 mb-3">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="form-control">{{value.state}}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="form-control">{{value.city}}</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label class="col-md-3">Package &amp; Plan</label>
+                            <div class="col-md-9 mb-3">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <p class="form-control">{{value.package_GB}}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="form-control">{{value.package_MB}}</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <p class="form-control">{{value.package_duration}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <p>Ask your administrator for update any profile details</p>
+                    </div>
+                    <div class="tab-pane fade" id="tab_password">
+                        <form method="post" name="frmpassword" data-parsley-validate="true" novalidate="">
+                            {% csrf_token %}
+                            <!-- form row -->
+                            <div class="form-row mb-3">
+                                <!-- form column -->
+                                <label for="password" class="col-md-3">New Password <abbr title="Required" class="text-danger">*</abbr></label> <!-- /form column -->
+                                <!-- form column -->
+                                <div class="col-md-8">
+                                    <input type="password" id="password" name="password" class="form-control" data-parsley-minlength="6" data-parsley-maxlength="15" data-parsley-required="true">
+                                    <small class="text-muted">Password should be Minimum 6 to 20 characters with different classes of characters in password. Classes of characters is: Lower Case, Upper Case, Digits, Special Characters.</small>
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="#password" data-toggle="password"><i class="fa fa-eye fa-fw"></i> <span>Show</span></a>
+                                </div>
+                            </div>
+                            <div class="form-row mb-3">
+                                <!-- form column -->
+                                <label for="confirm_password" class="col-md-3">Confirm Password <abbr title="Required" class="text-danger">*</abbr></label> <!-- /form column -->
+                                <!-- form column -->
+                                <div class="col-md-8">
+                                    <input type="password" id="confirm_password" name="confirm_password" data-parsley-error-message="Current password &amp; confirm password should be same" data-parsley-equalto="#password" class="form-control" data-parsley-required="true">
+                                </div>
+                                <div class="col-md-1">
+                                    <a href="#confirm_password" data-toggle="password"><i class="fa fa-eye fa-fw"></i> <span>Show</span></a>
+                                </div>
+                            </div>
+                         <hr>
+                          <!-- .form-actions -->
+                          <div class="form-actions">
+                            <button type="submit" name="updpassword" class="btn btn-primary text-nowrap ml-auto">Update Password</button>
+                          </div><!-- /.form-actions -->
+                        </form><!-- /form -->
+                    </div>
+                    <div class="tab-pane fade" id="two_wayauth">
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>Two-factor authentication is an extra layer of security for your <b>Bimabook</b> account to ensure that you're the only person who can access your account, even if someone knows your password. System will sent a code on demo@bimabook.in<h5><br>Coming soon</h5></span>
+                            </div>
+                            {% endfor %} 
+                    </div>
+                </div>
+            </div><!-- /.card-body -->
+        </div><!-- /.card -->
+    </div><!-- /grid column -->
+</div><!-- /grid row -->
+</div><!-- /.page-section -->
+</div><!-- /.page-inner -->				</div><!-- /.page -->
+    </div><!-- /.wrapper -->
+</main><!-- /.app-main -->
+
+{%endblock%}

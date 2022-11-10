@@ -1,0 +1,584 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+<head>
+  <title> Bimabook </title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- End Required meta tags -->
+  <!-- FAVICONS -->
+  <link rel="apple-touch-icon" sizes="144x144" href="static/images/favicon.ico">
+  <link rel="shortcut icon" href="static/images/favicon.ico">
+  <meta name="theme-color" content="#3063A0"><!-- End FAVICONS -->
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600" rel="stylesheet" /><!-- End GOOGLE FONT -->
+  <!-- BEGIN PLUGINS STYLES -->
+  <link rel="stylesheet" href="{% static 'css/aos.css'%}">/>
+  <!-- END PLUGINS STYLES -->
+  <!-- BEGIN THEMES -->
+  <link rel="stylesheet" href="{% static 'css/icofont.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/theme.min.css' %}" data-skin="default" />
+  <link rel="stylesheet" href="{% static 'css/parsley.css' %}" />
+
+</head>
+
+<body>
+  <!-- .app -->
+  <main class="app app-site">
+    <!-- site header -->
+    <!-- .navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light py-3 sticky-header" data-aos="fade-in">
+      <!-- .container -->
+      <div class="container">
+        <!-- .hamburger -->
+        <button class="hamburger hamburger-squeeze hamburger-light d-flex d-lg-none" type="button"
+          data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01"
+          aria-expanded="false" aria-label="Toggle navigation"><span class="hamburger-box"><span
+              class="hamburger-inner"></span></span></button> <!-- /.hamburger -->
+        <!-- .navbar-brand -->
+        <a href="index.html" class="navbar-brand ml-auto">
+          <img src="{% static 'images/logo.png' %}" class='img-fluid logo-160' alt='Bimabook Logo'>
+        </a> <!-- /.navbar-brand -->
+        <a class="navbar-btn btn btn-danger shadow ml-auto order-lg-2" href="login/">Sign In</a> <!-- .navbar-collapse -->
+        <div class="navbar-collapse collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item mr-lg-3 active">
+              <a class="nav-link py-2" href="#home">Home</a>
+            </li>
+            <li class="nav-item mr-lg-3">
+              <a class="nav-link py-2" href="#feature">Features</a>
+            </li>
+            <li class="nav-item mr-lg-3">
+              <a class="nav-link py-2" href="#pricing">Pricing</a>
+            </li>
+            <li class="nav-item mr-lg-3">
+              <a class="nav-link py-2" href="#about">About</a>
+            </li>
+            <li class="nav-item mr-lg-3">
+              <a class="nav-link py-2" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+    <!-- /site header -->
+    <!-- home -->
+    <section id="home" class="py-6 bg-light">
+      <!-- .container -->
+      <div class="container container-fluid-xl">
+        <!-- .row -->
+        <div class="row align-items-center">
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6 order-md-2" data-aos="fade-left">
+            <img class="img-fluid img-float-md-6 mb-5 mb-md-0" src="/static/images/launch.png" alt="image">
+          </div><!-- /.col-md-6 -->
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6 order-md-1" data-aos="fade-in">
+            <div class="col-fix pl-xl-3 ml-auto text-center text-sm-left">
+              <h1 class="enable-responsive-font-size mb-4"> Manage your Policy's through Bimabook </h1>
+              <p class="lead text-muted mb-5"> Bimabook Provide you a perfect way to manage your policy entry & Payouts
+                for your Agents</p><a href="#contact"
+                class="btn btn-lg btn-primary d-block d-sm-inline-block mr-sm-2 my-3" data-aos="zoom-in"
+                data-aos-delay="200">Request For Demo <i class="fa fa-angle-right ml-2"></i></a>
+            </div>
+          </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /hero -->
+    <!-- .feature -->
+    <section id="feature" class="py-5">
+      <!-- .container -->
+      <div class="container">
+        <!-- .row -->
+        <div class="row text-center text-md-left">
+          <!-- .col -->
+          <div class="col-6 col-md-3 py-4" data-aos="fade-up" data-aos-delay="0">
+            <img class="mb-4" src="/static/images/simple.gif" alt="image" height="72">
+            <h2 class="lead">Device Responsive </h2>
+          </div><!-- /.col -->
+          <!-- .col -->
+          <div class="col-6 col-md-3 py-4" data-aos="fade-up" data-aos-delay="100">
+            <img class="mb-4" src="/static/images/calculator.gif" alt="image" height="72">
+            <h2 class="lead">Customizable Payout </h2>
+          </div><!-- /.col -->
+          <!-- .col -->
+          <div class="col-6 col-md-3 py-4" data-aos="fade-up" data-aos-delay="200">
+            <img class="mb-4" src="/static/images/scalable.gif" alt="image" height="72">
+            <h2 class="lead"> Reports and Downloads </h2>
+          </div><!-- /.col -->
+          <!-- .col -->
+          <div class="col-6 col-md-3 py-4" data-aos="fade-up" data-aos-delay="300">
+            <img class="mb-4" src="/static/images/support.gif" alt="image" height="72">
+            <h2 class="lead"> Excellent Support </h2>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /.feature -->
+    <!-- sections title -->
+    <section class="py-5">
+      <!-- .container -->
+      <div class="container">
+        <!-- .row -->
+        <div class="row">
+          <!-- .col -->
+          <div class="col-12 col-md-8 offset-md-2 text-center">
+            <h2>Increase your Productivity </h2>
+            <p class="lead text-muted">It is ready to use <strong>ONLINE MIS SOFTWARE</strong> for Insurance Brokers and
+              Agents. </p>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /sections title -->
+    <!-- feature -->
+    <section class="py-5">
+      <!-- .container -->
+      <div class="container">
+        <!-- .row -->
+        <div class="row align-items-center">
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6" data-aos="fade-right">
+            <img class="img-fluid mb-4 mb-md-0" src="/static/images/productivity.png" alt="image">
+          </div><!-- /.col-md-6 -->
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6 text-center text-sm-left">
+            <p class="text-muted font-size-lg mb-4">
+              Hurray! Bimabook is a ready-made web software to convert your business from manual to cloud based. Store
+              your business data on cloud from anywhere and anytime.
+            </p>
+          </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section>
+    <section class="pt-5">
+      <!-- .container -->
+      <div class="container">
+        <!-- .row -->
+        <div class="row align-items-center">
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6 order-md-2" data-aos="fade-left">
+            <img class="img-fluid mb-4 mb-md-0" src="/static/images/bottom_to_up.png" alt="image">
+          </div><!-- /.col-md-6 -->
+          <!-- .col-md-6 -->
+          <div class="col-12 col-md-6 order-md-1 text-center text-sm-left">
+            <h3 class="mb-4"> Take your business from the bottom up </h3>
+            <p class="text-muted font-size-lg mb-4"> With a user-friendly, simple and responsive design, you can easily
+              attract your prospective clients. Don't worry! our team will always be behind you if needed.</p>
+          </div><!-- /.col-md-6 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /feature -->
+    <!-- divider -->
+    <section class="position-relative">
+      <!-- wave2.svg -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="192" viewbox="0 0 1440 240"
+        preserveaspectratio="none">
+        <path class="fill-light" fill-rule="evenodd"
+          d="M0 240V0c19.985 5.919 41.14 11.008 63.964 14.89 40.293 6.855 82.585 9.106 125.566 9.106 74.151 0 150.382-6.697 222.166-8.012 13.766-.252 27.51-.39 41.21-.39 99.76 0 197.087 7.326 282.907 31.263C827.843 72.527 860.3 117.25 906.926 157.2c43.505 37.277 115.38 51.186 208.485 53.076 7.584.153 15.156.224 22.714.224 40.887 0 81.402-2.062 121.914-4.125 40.512-2.062 81.027-4.125 121.902-4.125 1.01 0 2.019.002 3.03.004 16.208.042 34.959.792 55.029 2.234V240H0z">
+        </path>
+      </svg>
+    </section><!-- /divider -->
+    <!-- benefits -->
+    <section class="position-relative py-5 bg-light">
+      <!-- .sticker -->
+      <div class="sticker">
+        <div class="sticker-item sticker-top-right sticker-soften">
+          <img src="/static/images/cubes.svg" alt="image" data-aos="zoom-in">
+        </div>
+        <div class="sticker-item sticker-bottom-left sticker-soften scale-150">
+          <img src="/static/images/cubes.svg" alt="image" data-aos="zoom-in">
+        </div>
+      </div><!-- /.sticker -->
+      <!-- .container -->
+      <div class="container position-relative">
+        <h2 class="text-center text-sm-left"> Get more benefits </h2>
+        <div class="card-deck-lg">
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="0">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/rocket.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0"> Ready-to-go </h5>
+                  <p class="text-muted font-size-lg"> Our Online MIS platform (bimabook.in) is 100% functional and live.
+                    You just need to provide your basic information like: Name, Phone and email id and choose your
+                    subscription plan.<br><br>And our Application Specialist will make you live.</p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="100">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/setting.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0"> Highly functionality </h5>
+                  <p class="text-muted font-size-lg"> Bimabook.in have so many functions, that it will add knowledge and
+                    value to your existing system. We do not STOP with existing functions, but keep on adding new
+                    functions on routine basis, that too on free of Cost. </p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+        </div><!-- /.card-deck -->
+        <!-- .card-deck -->
+        <div class="card-deck-lg">
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="200">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/brain.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0"> Boost your creativity </h5>
+                  <p class="text-muted font-size-lg"> Once you start using bimabook.in, you will start saving your lot
+                    of time. This time saved, can now be used in your business expansion (Finding new Customer,
+                    Empowering your Staff, Exploring new Line of Business etc.) by applying your creativity. </p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="300">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/horse.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0"> Simple workflow </h5>
+                  <p class="text-muted font-size-lg"> After taking feedback and suggestion from Insurance Industry
+                    Specialist, we have designed very easy work flow, so that, user of bimabook.in do not get confused
+                    in options and work like a expert from the day one. </p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+        </div><!-- /.card-deck -->
+        <!-- .card-deck -->
+        <div class="card-deck-lg">
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="400">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/savings.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0"> Full Support </h5>
+                  <p class="text-muted font-size-lg"> Server Support, Application Support and other support related to
+                    use of software will be available for our customers from Monday to Saturday, 9:00AM to 11:00PM, on
+                    our dedicated Phone Number and email id </p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+          <!-- .card -->
+          <div class="card shadow" data-aos="fade-up" data-aos-delay="500">
+            <!-- .card-body -->
+            <div class="card-body p-4">
+              <div class="d-sm-flex align-items-start text-center text-sm-left">
+                <img src="/static/images/document.svg" class="mr-sm-4 mb-3 mb-sm-0" alt="image" width="72">
+                <div class="flex-fill">
+                  <h5 class="mt-0">Payout Calculation </h5>
+                  <p class="text-muted font-size-lg"> Major Pain point of each and every Broker is to calculate its POS
+                    payout and Self Payout to be claimed from Insurance Company. With Bimabook.in it is made very easy,
+                    where admin can create payout on our PAYOUT module and with every entry done in this ONLINE MIS
+                    PORTAL, payout will be auto calculated.</p>
+                </div>
+              </div>
+            </div><!-- /.card-body -->
+          </div><!-- /.card -->
+        </div><!-- /.card-deck -->
+      </div><!-- /.container -->
+    </section><!-- /feature -->
+    <!-- pricing -->
+    <section id='pricing' class="position-relative py-5">
+      <!-- .sticker -->
+      <div class="sticker">
+        <div class="sticker-item sticker-top-right sticker-soften translate-x-50">
+          <img src="/static/images/bubble1.svg" alt="image" data-aos="fade-left">
+        </div>
+      </div><!-- /.sticker -->
+      <!-- .container -->
+      <div class="container position-relative">
+        <h2 class="text-center"> Simple pricing </h2>
+        <p class="lead text-muted text-center mb-5">Pay according to the your data size</p><!-- .row -->
+        <div class="row align-items-center">
+          <div class="col-12 col-md-5 offset-md-1 py-md-4 pr-md-0">
+            <div class="card font-size-lg shadow-lg" data-aos="fade-up">
+              <h5 class="card-header text-center text-success p-4 px-lg-5">Base Plan </h5>
+              <div class="card-body p-3 p-lg-4">
+                <h3 class="text-center">
+                  <small>Get 3gb Data Space in Just &#x20b9;2999/- Monthly</small>
+                </h3>
+                <p class="text-center text-muted ">Start your Business with Bimabook with lots of benefits with minimum
+                  cost</p>
+                <ul class="list-icons">
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Policy Listing with
+                    global searching & exporting</li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Upcoming Renewal List
+                    with export feature</li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Commision Ledger </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Reporting </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Agents Panel with
+                    create sub Agents </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Payouts Building </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Auto get RTO's based
+                    on State </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Unlimited Staff &
+                    Agents Creation </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Free update forever
+                  </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Full support &
+                    Training </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> 99.99% Uptime & Fast
+                    Speed </li>
+                  <li class="pl-1"><span class="list-icon icofont-tick-mark text-success"></span> Data Security </li>
+                </ul>
+                <h3 class="display-5 text-center">
+                  <small>Addon Data Space in Just &#x20b9;999/-gb Monthly</small>
+                </h3>
+              </div>
+              <div class="card-footer">
+                <a href="#contact" class="card-footer-item p-4 px-lg-5">Contact now</a>
+              </div>
+            </div>
+          </div><!-- /.col -->
+          <!-- .col -->
+          <div class="col-12 col-md-5 m-auto1 py-md-4 pl-md-0">
+            <div class="card font-size-lg card-inverse bg-primary shadow" data-aos="fade-up" data-aos-delay="200">
+              <h5 class="card-header p-4 px-lg-5"> Recommend Plans </h5>
+              <div class="card-body p-3">
+                <h3 class="display-4 text-center text-white">
+                  <small>Get 10gb Data Space in Just &#x20b9;7499/- Monthly</small>
+                </h3>
+                <img class="img-fluid mb-4 mb-md-0" src="/static/images/plan.png" alt="image">
+              </div>
+            </div>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /feature -->
+    <!-- about -->
+    <section id='about' class="position-relative py-5 bg-light">
+      <!-- .sticker -->
+      <div class="sticker">
+        <div class="sticker-item sticker-bottom-left sticker-soften">
+          <img src="/static/images/bubble2.svg" alt="image" data-aos="zoom-in" data-aos-delay="200">
+        </div>
+      </div><!-- /.sticker -->
+      <!-- .container -->
+      <div class="container position-relative mb-5">
+        <h2 class="text-center mb-6"> About Bimabook </h2>
+        <!-- .row -->
+        <div class="row">
+          <!-- .col -->
+          <div class="col-12 col-md-6 col-lg-5 offset-lg-1 mr-md-0">
+            <!-- .card -->
+            <div class="card shadow-none rounded-lg mb-0 mr-md-n5 mt-md-n5" data-aos="fade-in">
+              <img class="img-fluid rounded-lg shadow" src="/static/images/screencapture-bimabook.png" alt="image">
+            </div><!-- /.card -->
+          </div><!-- /.col -->
+          <!-- .col -->
+          <div class="col-12 col-md-6 col-lg-6 ml-md-0">
+            <!-- .card -->
+            <div class="card shadow-lg rounded-lg p-4 ml-md-n5 mt-md-5" data-aos="fade-up">
+              <blockquote class="blockquote border-0">
+                <figure>
+                  <img class="mr-2" src="/static/images/quote.svg" alt="image" height="32">
+                </figure>
+                <ul class="list-icons text-left">
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>bimabook.in is an ONLINE MIS
+                    SOFTWARE, which is complete solution to replace your manual excel work.</li>
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>Using this you will get rid of
+                    excel, because the formula and calculation which are used in excel, for making your MIS, is already
+                    included in the bimabook.in</li>
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>bimabook.in gives you Date wise
+                    Reports in excel format, such as Agent wise,Insurer wise,Vehicle Category wise,MIS & more..</li>
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>Payout building is the
+                    excellent feature of this software, which helps you in calculating the incentive of your POS/Agents
+                    automatically. This incentive is displayed in very professional format in the form of Ledger.</li>
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>Add/Edit/Copy/Search are few
+                    basic features which are embedded in almost all the modules</li>
+                  <li class="mb-2 pl-1"><span class="list-icon icofont-tick-mark"></span>If you are an Insurance Broker
+                    or Agent then you must use this application and get rid of your excel work.</li>
+                </ul>
+              </blockquote>
+            </div><!-- /.card -->
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /testimonials -->
+    <!-- call to action -->
+    <section id='contact' class="position-relative py-5 ">
+      <!-- .sticker -->
+      <div class="sticker">
+        <div class="sticker-item sticker-bottom-left sticker-soften">
+          <img src="/static/images/contact.png" alt="image" data-aos="fade-left">
+        </div>
+      </div><!-- /.sticker -->
+      <!-- .container -->
+      <div class="container position-relativer">
+        <h2 class="text-center"> Contact Us</h2>
+        <p class='text-muted text-center mb-5 font-size-lg'>
+          If you have any questions or need help, feel free to contact with our team.
+        </p>
+        <div class='row'>
+          <div class="col-md-5 d-flex align-items-center">
+            <div class='card rounded-lg p-4 mr-md-n5 aos-init aos-animate'>
+              <h2 class='title'>We’d Love to Hear From You.</h2>
+
+              <p class='text-muted font-size-lg'>
+                If you need any information or want to take a live demo or <br>you want to subscribe to it, then connect
+                us by email or call
+              </p>
+
+              <div class="col-lg-12 d-flex mb-3">
+                <div>
+                  <h2 class="title">Call Us</h2>
+                  <p class='font-size-lg'><i class="icofont-ui-call text-primary"></i> <a href="tel:9717197498"
+                      class="font-size-lg">9717197498</a></p>
+                </div>
+              </div>
+              <div class="col-lg-12 d-flex mb-3">
+                <div>
+                  <h2 class="title">Whatsapp</h2>
+                  <p class='font-size-lg'><i class="icofont-whatsapp text-success"></i> <a target="_blank"
+                      href="https://api.whatsapp.com/send?phone=9717197498&amp;text=Hi,%20I%20have%20a%20query"
+                      class="font-size-lg">9717197498</a></p>
+                </div>
+              </div>
+              <div class="col-lg-12 d-flex mb-3">
+                <div>
+                  <h2 class="title">Email Address</h2>
+                  <p class='font-size-lg'><i class="icofont-email text-info"></i> <a
+                      href="mailto:support@bimabook.in">support@bimabook.in</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card bg-success text-left text-white shadow rounded-lg p-4 mb-0" data-aos="fade-up">
+              <div class="card-body">
+                <form method="post" autocomplete="off" data-parsley-validate="true" id="contactForm">
+                  <div class="dzFormMsg"></div>
+                  <div class='row'>
+                    <div class="col-md-6">
+                      <div class="form-group mb-1">
+                        <label class="col-form-label">Full Name<em class="text-danger">*</em></label>
+                        <input type="text" class='form-control' data-parsley-required="true"
+                          data-parsley-required-message="Please Enter Your Name"
+                          data-parsley-pattern="^(?:[A-Za-z]+[ -])*[A-Za-z]+$" name="name" />
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group mb-1">
+                        <label class="col-form-label">Mobile No.<em class="text-danger">*</em></label>
+                        <input type="text" class='maskNumField form-control'
+                          data-parsley-required-message="Enter your Valid Mobile No." data-parsley-required="true"
+                          data-mask-as-number-maxlength="10" data-parsley-minlength="10" data-parsley-maxlength="10"
+                          data-parsley-pattern="^[0-9]+$" data-parsley-error-message="Mobile No. should be of 10 digits"
+                          name="mobile" />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group mb-1">
+                    <label class="col-form-label">Organisation Name<em class="text-danger">*</em></label>
+                    <input type="text" class='form-control' data-parsley-required="true" name="orgnization">
+                  </div>
+                  <div class="form-group mb-1">
+                    <label class="col-form-label">Email ID<em class="text-danger">*</em></label>
+                    <input type="text" class='form-control' data-parsley-required-message="Enter Valid Email id"
+                      data-parsley-error-message="Please enter your valid email id" data-parsley-required="true"
+                      data-parsley-type="email" name="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">Your Query<em class="text-danger">*</em></label>
+                    <textarea rows='6' class='form-control' data-parsley-required="true" name="discription"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-sm-4 mb-1">
+                        <input type="text" name="captcha_code" id="captcha_code" data-parsley-required="true"
+                          data-parsley-required-message="Please Enter Captcha" class="form-control" aria-required="true"
+                          aria-invalid="false" placeholder="Captcha code*">
+                      </div>
+                      <div class="col-sm-4 col-8">
+                        <div id="concerncaptcha" class="text-center"><img id="concerncaptchaimg"
+                            src="/static/images/captcha.png" alt="Captcha" class="w-100" style="height: 38px;" /></div>
+                      </div>
+                      <div class="col-sm-2 col-4 pl-0">
+                        <a href='javascript:void(0);' class='btn-link'><i class="icofont-refresh font-size-lg text-dark"
+                            id="concernreload" aria-hidden="true"></i></a>
+                      </div>
+                      <div class="col-sm-2">
+                        <button type="submit" name="vc_add"
+                          class="btn btn-primary btn-lg float-right shadow ">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /call to action -->
+    <!-- footer -->
+    <section class="bg-black text-white">
+      <!-- .container -->
+      <div class="container">
+        <!-- .row -->
+        <div class="row">
+          <!-- .col -->
+          <div class="col-md-6 col-sm-12">
+            <p class="text-muted mt-3"> Bimabook &copy;
+              <script>document.write(new Date().getFullYear())</script>. All rights reserved.
+            </p>
+          </div><!-- /.col -->
+          <div class="col-md-6 col-sm-12 mt-3 text-right">
+            <a href="privacy-policy.html" class="text-muted">Privacy Policy</a> |
+            <a href="terms-condition.html" class="text-muted">Terms & Condition</a> |
+            <a href="cookies-policy.html" class="text-muted">Cookies Policy</a>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+    </section><!-- /footer -->
+  </main><!-- /.app -->
+  <!-- BEGIN BASE JS -->
+  <script src="{%static 'js/jquery.min.js'%}"></script>
+  <script src="{%static 'js/popper.min.js'%}"></script>
+  <script src="{%static 'js/bootstrap.min.js'%}"></script> <!-- END BASE JS -->
+  <script src="{%static 'js/jquery.form.js'%}"></script>
+  <script src="{%static 'js/parsley.js'%}"></script>
+  <!-- BEGIN PLUGINS JS -->
+  <script src="{%static 'js/aos.js'%}"></script> <!-- END PLUGINS JS -->
+  <!-- BEGIN THEME JS -->
+  <script src="{%static 'js/theme.js'%}"></script> <!-- END THEME JS -->
+  <script src="{%static 'js/mask-as-number.min.js'%}"></script>
+  <script>
+    $(document).ready(function () {
+      $('.maskNumField').maskAsNumber();
+      $("#contactForm").ajaxForm({ beforeSend: function () { var a = $("#contactForm"); if (!a.parsley().isValid()) return !1; (submit = a.find("button[type='submit']")).html("Submit...").attr("disabled", !0) }, url: "sent.php", success: function (a, c, d, b) { $("input[name='name']").focus(), $(".dzFormMsg").html(""); try { if (obj = $.parseJSON(a), $(".dzFormMsg").html(obj.response), obj.status) { $(b)[0].reset(); $("#concernreload").trigger('click'); var e = setInterval(function () { $(".dzFormMsg").html(""), $(".alert-dismissible").fadeOut(), clearInterval(e) }, 3e3) } } catch (f) { alert("System Getting Error") } submit.html("Submit").removeAttr("disabled") } });
+      $("#concernreload").click(function () {
+        $("#captcha_code").val('');
+        var src = $(this);
+        $("#concerncaptcha").html('<img src="/static/images/giphy.gif" alt="CAPTCHA" style="width: 44px;"/>')
+        var id = Math.random();
+        setTimeout(function () {
+          $("#ajax_" + src.id).remove(); src.show();
+          $("img#concerncaptchaimg").remove();
+          $("#concerncaptcha").html('<img id="concerncaptchaimg" class="w-100" alt="captcha" src="/static/images/captcha.png"/>');
+        }
+          , 300);
+        id = '';
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,321 @@
+{%extends "base.html"%}
+{%block content%}
+{% load static %}
+         <main class="app-main">
+            <!-- .app-main -->
+            <div class="wrapper">
+               <!-- .wrapper -->
+               <div class="page ">
+                  <!-- .page -->
+                  <div class="page-inner">
+                     <!-- .page-inner -->
+                     <header class="page-title-bar">
+                        <!-- .page-title-bar -->
+                        <!-- grid row -->
+                        <div class="row text-center text-sm-left">
+                           <!-- grid column -->
+                           <div class="col">
+                              <h1 class="page-title">Receivable Summary</h1>
+                           </div>
+                           <!-- /grid column -->
+                        </div>
+                        <!-- /grid row -->
+                     </header>
+                     <!-- .page-section -->
+                     <div class="page-section">
+                        <!-- .card -->
+                        <div class="card card-fluid">
+                           <!-- .card-header -->
+                           <div class="card-header">
+                              <form id="frmdledger" method="post" autocomplete="off">
+                                 <div class="row">
+                                    <div class="col-md-2 col-sm-12">
+                                       <div class="form-group">
+                                          <select class="custom-select" name="period" id="select-period">
+                                             <option value="this_month" selected="">This Month</option>
+                                             <option value="last_month">Last Month</option>
+                                             <option value="current_year">Current Year</option>
+                                             <option value="custom">Custom</option>
+                                          </select>
+                                       </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                       <div class="form-group">
+                                          <input type="text" id="frmDate" data-date-format="d/m/Y" value="01/08/2022" autocomplete="off" name="frmDate" placeholder="DD/MM/YYYY" class="form-control flatpickr-input" disabled="" readonly="readonly">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-2 col-sm-12">
+                                       <div class="form-group">
+                                          <input type="text" id="toDate" data-date-format="d/m/Y" value="09/08/2022" autocomplete="off" name="toDate" placeholder="DD/MM/YYYY" class="form-control datepicker flatpickr-input" disabled="" readonly="readonly">
+                                       </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                       
+
+                              
+                                          {% comment %} <label>ALL AGENT<abbr title="Required" class="text-danger">*</abbr></label> {% endcomment %}
+                                          <select name="service_provider" data-parsley-required-message="" class="custom-select" id="service_provider" data-parsley-required="true">
+                                             
+                                             <option value=""> All service provider </option>
+                                             {%for value in datas%}
+                                             <option value={{value.full_name}}>{{value.full_name}}</option>
+                                             {%endfor%}
+                                             {% comment %} <option value="4">Broker Indore</option>
+                                             <option value="2">PolicyBazaar</option> {% endcomment %}
+                                          </select>
+                                       
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                       <div class="form-group">
+                                          <button type="submit" name="search" class="btn btn-primary"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+                                          <button type="submit" class="btn btn-secondary"><i class="icofont icofont-refresh" aria-hidden="true"></i> Reset</button>
+                                          <button type="button" onclick="ExportToExcel('xlsx')" id="download" class="btn btn-success"><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </form>
+                           </div>
+                           <!-- /.card-header -->
+                           <!-- .card-body -->
+                           <div class="card-body">
+                              <!-- .table -->
+                              <div class="table-responsive">
+                                 <div id="tblLedger_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                                    <div class="row">
+                                       <div class="col-sm-12 col-md-6"></div>
+                                       <div class="col-sm-12 col-md-6">
+                                          {% comment %} <div id="tblLedger_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control" placeholder="" aria-controls="tblLedger"></label></div> {% endcomment %}
+                                       </div>
+                                    </div>
+                                    <div class="table-responsive">
+                                       <table id="tblLedger" class="table table-hover no-wrap table-bordered1 dataTable" role="grid" aria-describedby="tblLedger_info">
+                                          <thead>
+                                             <tr role="row">
+                                                <th class="text-center bg-light w-10pc sorting_asc" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Sr. No.: activate to sort column descending" style="width: 52.125px;">Sr. No.</th>
+                                                <th class="bg-light sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Month: activate to sort column ascending" style="width: 51.3281px;">Month</th>
+                                                <th class="bg-light sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Service Provider: activate to sort column ascending" style="width: 138.234px;">Service Provider</th>
+                                                <th class="text-center bg-light sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Total Policy: activate to sort column ascending" style="width: 101.125px;">Total Policy</th>
+                                                <th class="text-center bg-light sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Cancelled: activate to sort column ascending" style="width: 86.344px;">Cancelled</th>
+                                                <th class="text-center bg-warning text-dark sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="OK Policy: activate to sort column ascending" style="width: 77.016px;">OK Policy</th>
+                                                <th class="text-center bg-red text-white sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Cancellation: activate to sort column ascending" style="width: 109.406px;">Cancellation</th>
+                                                <th class="text-center bg-success text-white sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Commision: activate to sort column ascending" style="width: 82.453px;">Commision</th>
+                                                <th class="text-center bg-blue text-white w-10pc sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Received: activate to sort column ascending" style="width: 71.578px;">Received</th>
+                                                <th class="text-center bg-light text-red sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="Balance: activate to sort column ascending" style="width: 68.453px;">Balance</th>
+                                                <th class="text-center bg-light w-10pc sorting" tabindex="0" aria-controls="tblLedger" rowspan="1" colspan="1" aria-label="#: activate to sort column ascending" style="width: 73.703px;">#</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             {%for value in data%}
+                                             <tr role="row" class="odd">
+                                                <td class="text-center sorting_1">{{forloop.counter}}</td>
+                                                <td>{{value.issueDate}}</td>
+                                                <td><a href="">{{value.agent_name}}</a></td>
+                                                <td class="text-center">{{value.total_policy}}</td>
+                                                <td class="text-center">0</td>
+                                                <td class="text-center bg-warning text-dark">{{value.ok_policy}}</td>
+                                                <td class="text-center bg-red text-white">0</td>
+                                                <td class="text-center bg-success text-white">0</td>
+                                                <td class="text-center bg-blue text-white">0</td>
+                                                <td class="text-center bg-light text-red">0</td>
+                                                <td class="text-center bg-light"><a href="spay.php?p=4" class="btn btn-sm btn-danger"><i class="icofont icofont-money"></i> Collect</a></td>
+                                             </tr>
+                                             {%endfor%}
+                                          </tbody>
+                                          <tfoot>
+                                             <tr>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">Total</th>
+                                                <th class="bg-light" colspan="2" rowspan="1"></th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">{{grand_policy}}</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">0</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">{{grand_policy}}</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">0</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">0</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">0</th>
+                                                <th class="text-center bg-light text-red" rowspan="1" colspan="1">0</th>
+                                                <th class="text-center bg-light" rowspan="1" colspan="1">#</th>
+                                             </tr>
+                                          </tfoot>
+                                       </table>
+                                    </div>
+                                    <div class="row align-items-center">
+                                       <div class="col-sm-12 col-md-5">
+                                          {% comment %} <div class="dataTables_info" id="tblLedger_info" role="status" aria-live="polite">Showing 1 to 1 of 1 entries</div> {% endcomment %}
+                                       </div>
+                                       <div class="col-sm-12 col-md-7 d-flex justify-content-end"></div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                     </div>
+                     <!-- /.page-section -->
+                  </div>
+                  <!-- /.page-inner -->
+               </div>
+               <!-- /.page -->
+            </div>
+            <!-- /.wrapper -->
+         </main>
+         <!-- /.app-main -->
+         <div class="aside-backdrop"></div>
+      </div>
+      <!-- /.app -->
+      <div class="modal modal-alert fade" id="ModalAlertError" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="ModalAlertErrorLabel" aria-hidden="true">
+         <!-- .modal-dialog -->
+         <div class="modal-dialog" role="document">
+            <!-- .modal-content -->
+            <div class="modal-content">
+               <!-- .modal-header -->
+               <div class="modal-header">
+                  <h5 class="modal-title">
+                     <i class="fa fa-exclamation-triangle text-red mr-1"></i> System Error 
+                  </h5>
+               </div>
+               <!-- /.modal-header -->
+               <!-- .modal-body -->
+               <div class="modal-body">
+                  <p>The Code Execution cannot proceed due to system error, retry after refreshing the page if the error remains the same, you need to contact your Administrator immediately.</p>
+               </div>
+               <!-- /.modal-body -->
+               <!-- .modal-footer -->
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-light" data-dismiss="modal">OK</button>
+               </div>
+               <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <!-- BEGIN BASE JS -->
+      <script src="{%static 'js/jquery.min.js'%}"></script>
+      <script src="{%static 'js/popper.min.js'%}"></script>
+      <script src="{%static 'js/bootstrap.min.js'%}"></script><!-- END BASE JS -->
+      <!-- BEGIN PLUGINS JS -->
+      <script src="{% static 'js/pace.min.js' %}"></script>
+      <script src="{% static 'js/stacked-menu.min.js' %}"></script>
+      <script src="{% static 'js/perfect-scrollbar.min.js'%}"></script> <!-- END PLUGINS JS -->
+      <!-- Parsley -->
+      <script src="{%static 'js/parsley.js'%}"></script></script>
+      <!-- BEGIN THEME JS -->
+      <script src="{%static 'js/theme.js' %}"></script> 
+      <script src="{%static 'js/toastr.min.js' %}"></script>
+      <script src="{%static 'js/flatpickr.min.js' %}"></script>
+      <script src="{%static 'js/select2.full.min.js' %}"></script>
+      <script src="{%static 'js/moment.js' %}"></script>
+      <script src="{%static 'js/mask-as-number.min.js' %}"></script>
+      <script src="{%static 'js/jquery.dataTables.min.js' %}"></script>
+      <script src="{%static 'js/dataTables.bootstrap.js' %}"></script>
+      <script src="{%static 'js/jquery.form.js' %}"></script>
+      <script src="{%static 'js/custom.min.js' %}"></script>
+   
+      <div class="flatpickr-calendar animate showTimeInput" tabindex="-1">
+         <div class="flatpickr-months">
+            <span class="flatpickr-prev-month">
+               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                  <g></g>
+                  <path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path>
+               </svg>
+            </span>
+            <div class="flatpickr-month">
+               <div class="flatpickr-current-month">
+                  <select class="flatpickr-monthDropdown-months" tabindex="-1">
+                     <option class="flatpickr-monthDropdown-month" value="0" tabindex="-1">January</option>
+                     <option class="flatpickr-monthDropdown-month" value="1" tabindex="-1">February</option>
+                     <option class="flatpickr-monthDropdown-month" value="2" tabindex="-1">March</option>
+                     <option class="flatpickr-monthDropdown-month" value="3" tabindex="-1">April</option>
+                     <option class="flatpickr-monthDropdown-month" value="4" tabindex="-1">May</option>
+                     <option class="flatpickr-monthDropdown-month" value="5" tabindex="-1">June</option>
+                     <option class="flatpickr-monthDropdown-month" value="6" tabindex="-1">July</option>
+                     <option class="flatpickr-monthDropdown-month" value="7" tabindex="-1">August</option>
+                     <option class="flatpickr-monthDropdown-month" value="8" tabindex="-1">September</option>
+                     <option class="flatpickr-monthDropdown-month" value="9" tabindex="-1">October</option>
+                     <option class="flatpickr-monthDropdown-month" value="10" tabindex="-1">November</option>
+                     <option class="flatpickr-monthDropdown-month" value="11" tabindex="-1">December</option>
+                  </select>
+                  <div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year" max="2023"><span class="arrowUp"></span><span class="arrowDown"></span></div>
+               </div>
+            </div>
+            <span class="flatpickr-next-month">
+               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                  <g></g>
+                  <path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path>
+               </svg>
+            </span>
+         </div>
+         <div class="flatpickr-innerContainer">
+            <div class="flatpickr-rContainer">
+               <div class="flatpickr-weekdays">
+                  <div class="flatpickr-weekdaycontainer">
+                     <span class="flatpickr-weekday">
+                     Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
+                     </span>
+                  </div>
+               </div>
+               <div class="flatpickr-days" tabindex="-1">
+                  <div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="July 31, 2022" tabindex="-1">31</span><span class="flatpickr-day selected" aria-label="August 1, 2022" tabindex="-1">1</span><span class="flatpickr-day " aria-label="August 2, 2022" tabindex="-1">2</span><span class="flatpickr-day " aria-label="August 3, 2022" tabindex="-1">3</span><span class="flatpickr-day " aria-label="August 4, 2022" tabindex="-1">4</span><span class="flatpickr-day " aria-label="August 5, 2022" tabindex="-1">5</span><span class="flatpickr-day " aria-label="August 6, 2022" tabindex="-1">6</span><span class="flatpickr-day " aria-label="August 7, 2022" tabindex="-1">7</span><span class="flatpickr-day " aria-label="August 8, 2022" tabindex="-1">8</span><span class="flatpickr-day today" aria-label="August 9, 2022" aria-current="date" tabindex="-1">9</span><span class="flatpickr-day " aria-label="August 10, 2022" tabindex="-1">10</span><span class="flatpickr-day " aria-label="August 11, 2022" tabindex="-1">11</span><span class="flatpickr-day " aria-label="August 12, 2022" tabindex="-1">12</span><span class="flatpickr-day " aria-label="August 13, 2022" tabindex="-1">13</span><span class="flatpickr-day " aria-label="August 14, 2022" tabindex="-1">14</span><span class="flatpickr-day " aria-label="August 15, 2022" tabindex="-1">15</span><span class="flatpickr-day " aria-label="August 16, 2022" tabindex="-1">16</span><span class="flatpickr-day " aria-label="August 17, 2022" tabindex="-1">17</span><span class="flatpickr-day " aria-label="August 18, 2022" tabindex="-1">18</span><span class="flatpickr-day " aria-label="August 19, 2022" tabindex="-1">19</span><span class="flatpickr-day " aria-label="August 20, 2022" tabindex="-1">20</span><span class="flatpickr-day " aria-label="August 21, 2022" tabindex="-1">21</span><span class="flatpickr-day " aria-label="August 22, 2022" tabindex="-1">22</span><span class="flatpickr-day " aria-label="August 23, 2022" tabindex="-1">23</span><span class="flatpickr-day " aria-label="August 24, 2022" tabindex="-1">24</span><span class="flatpickr-day " aria-label="August 25, 2022" tabindex="-1">25</span><span class="flatpickr-day " aria-label="August 26, 2022" tabindex="-1">26</span><span class="flatpickr-day " aria-label="August 27, 2022" tabindex="-1">27</span><span class="flatpickr-day " aria-label="August 28, 2022" tabindex="-1">28</span><span class="flatpickr-day " aria-label="August 29, 2022" tabindex="-1">29</span><span class="flatpickr-day " aria-label="August 30, 2022" tabindex="-1">30</span><span class="flatpickr-day " aria-label="August 31, 2022" tabindex="-1">31</span><span class="flatpickr-day nextMonthDay" aria-label="September 1, 2022" tabindex="-1">1</span><span class="flatpickr-day nextMonthDay" aria-label="September 2, 2022" tabindex="-1">2</span><span class="flatpickr-day nextMonthDay" aria-label="September 3, 2022" tabindex="-1">3</span><span class="flatpickr-day nextMonthDay" aria-label="September 4, 2022" tabindex="-1">4</span><span class="flatpickr-day nextMonthDay" aria-label="September 5, 2022" tabindex="-1">5</span><span class="flatpickr-day nextMonthDay" aria-label="September 6, 2022" tabindex="-1">6</span><span class="flatpickr-day nextMonthDay" aria-label="September 7, 2022" tabindex="-1">7</span><span class="flatpickr-day nextMonthDay" aria-label="September 8, 2022" tabindex="-1">8</span><span class="flatpickr-day nextMonthDay" aria-label="September 9, 2022" tabindex="-1">9</span><span class="flatpickr-day nextMonthDay" aria-label="September 10, 2022" tabindex="-1">10</span></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="flatpickr-calendar animate showTimeInput" tabindex="-1">
+         <div class="flatpickr-months">
+            <span class="flatpickr-prev-month">
+               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                  <g></g>
+                  <path d="M5.207 8.471l7.146 7.147-0.707 0.707-7.853-7.854 7.854-7.853 0.707 0.707-7.147 7.146z"></path>
+               </svg>
+            </span>
+            <div class="flatpickr-month">
+               <div class="flatpickr-current-month">
+                  <select class="flatpickr-monthDropdown-months" tabindex="-1">
+                     <option class="flatpickr-monthDropdown-month" value="0" tabindex="-1">January</option>
+                     <option class="flatpickr-monthDropdown-month" value="1" tabindex="-1">February</option>
+                     <option class="flatpickr-monthDropdown-month" value="2" tabindex="-1">March</option>
+                     <option class="flatpickr-monthDropdown-month" value="3" tabindex="-1">April</option>
+                     <option class="flatpickr-monthDropdown-month" value="4" tabindex="-1">May</option>
+                     <option class="flatpickr-monthDropdown-month" value="5" tabindex="-1">June</option>
+                     <option class="flatpickr-monthDropdown-month" value="6" tabindex="-1">July</option>
+                     <option class="flatpickr-monthDropdown-month" value="7" tabindex="-1">August</option>
+                  </select>
+                  <div class="numInputWrapper"><input class="numInput cur-year" type="number" tabindex="-1" aria-label="Year" max="2022"><span class="arrowUp"></span><span class="arrowDown"></span></div>
+               </div>
+            </div>
+            <span class="flatpickr-next-month flatpickr-disabled">
+               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 17 17">
+                  <g></g>
+                  <path d="M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z"></path>
+               </svg>
+            </span>
+         </div>
+         <div class="flatpickr-innerContainer">
+            <div class="flatpickr-rContainer">
+               <div class="flatpickr-weekdays">
+                  <div class="flatpickr-weekdaycontainer">
+                     <span class="flatpickr-weekday">
+                     Sun</span><span class="flatpickr-weekday">Mon</span><span class="flatpickr-weekday">Tue</span><span class="flatpickr-weekday">Wed</span><span class="flatpickr-weekday">Thu</span><span class="flatpickr-weekday">Fri</span><span class="flatpickr-weekday">Sat
+                     </span>
+                  </div>
+               </div>
+               <div class="flatpickr-days" tabindex="-1">
+                  <div class="dayContainer"><span class="flatpickr-day prevMonthDay" aria-label="July 31, 2022" tabindex="-1">31</span><span class="flatpickr-day " aria-label="August 1, 2022" tabindex="-1">1</span><span class="flatpickr-day " aria-label="August 2, 2022" tabindex="-1">2</span><span class="flatpickr-day " aria-label="August 3, 2022" tabindex="-1">3</span><span class="flatpickr-day " aria-label="August 4, 2022" tabindex="-1">4</span><span class="flatpickr-day " aria-label="August 5, 2022" tabindex="-1">5</span><span class="flatpickr-day " aria-label="August 6, 2022" tabindex="-1">6</span><span class="flatpickr-day " aria-label="August 7, 2022" tabindex="-1">7</span><span class="flatpickr-day " aria-label="August 8, 2022" tabindex="-1">8</span><span class="flatpickr-day today selected" aria-label="August 9, 2022" aria-current="date" tabindex="-1">9</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 10, 2022">10</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 11, 2022">11</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 12, 2022">12</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 13, 2022">13</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 14, 2022">14</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 15, 2022">15</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 16, 2022">16</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 17, 2022">17</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 18, 2022">18</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 19, 2022">19</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 20, 2022">20</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 21, 2022">21</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 22, 2022">22</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 23, 2022">23</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 24, 2022">24</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 25, 2022">25</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 26, 2022">26</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 27, 2022">27</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 28, 2022">28</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 29, 2022">29</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 30, 2022">30</span><span class="flatpickr-day flatpickr-disabled" aria-label="August 31, 2022">31</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 1, 2022">1</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 2, 2022">2</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 3, 2022">3</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 4, 2022">4</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 5, 2022">5</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 6, 2022">6</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 7, 2022">7</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 8, 2022">8</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 9, 2022">9</span><span class="flatpickr-day nextMonthDay flatpickr-disabled" aria-label="September 10, 2022">10</span></div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+</html>
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+<script>
+   function ExportToExcel(type, fn, dl) {
+     var elt = document.getElementById('tblLedger');
+     var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+     return dl ?
+       XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }):
+       XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
+  }
+ </script>
+{%endblock%}

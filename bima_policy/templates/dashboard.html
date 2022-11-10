@@ -1,0 +1,282 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+<!-- .app-main -->
+<main class="app-main">
+    <!-- .wrapper -->
+    <div class="wrapper">
+        <!-- .page -->
+        <div class="page">
+            <!-- .page-inner -->
+            <div class="page-inner">
+                <!-- .page-title-bar -->
+                <header class="page-title-bar">
+                    <!-- page title stuff goes here -->
+                    <div class="row">
+                        <div class="col-md-5 col-sm-12">
+                            <h1 class="page-title"> Dashboard </h1>
+                        </div>
+                    </div>
+                </header><!-- /.page-title-bar -->
+                <!-- .page-section -->
+                <div class="page-section">
+                    <div class="section-block">
+                        <!-- metric row -->
+                        <div class="metric-row">
+                            <div class="col-lg-12">
+                                <div class="metric-row metric-flush">
+                                    <!-- metric column -->
+                                    <div class="col">
+                                        <!-- .metric -->
+                                        <a href=""
+                                            class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label">Staff </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-users-alt-5"></span></sub>
+                                                <span class="value">
+                                                    {{staffcount}} </span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+                                    <div class="col">
+                                        <a href="agent/"
+                                            class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label">Agent </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-users-alt-1"></span></sub>
+                                                 <span class="value">{{agentcount}}</span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+                                    <div class="col">
+                                        <!-- .metric -->
+                                        <a href=""
+                                            class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label">Service Providers </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont-business-man"></span></sub>
+                                                 <span class="value">{{spcount}}</span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+                                    <div class="col">
+                                        <!-- .metric -->
+                                        <a href=""
+                                            class="metric metric-bordered align-items-center">
+                                            <h2 class="metric-label">Total Policies </h2>
+                                            <p class="metric-value h3">
+                                                <sub><span class="icofont icofont icofont-ebook"></span></sub>
+                                                <span class="value">
+                                                    {{totalpolicy}} </span>
+                                            </p>
+                                        </a> <!-- /.metric -->
+                                    </div><!-- /metric column -->
+                                </div>
+                            </div><!-- metric column -->
+                        </div><!-- /metric row -->
+                    </div>
+                    <!-- .section-block -->
+                    <div class="section-block">
+                        <div class="row">
+                            <div class="col-xl-9">
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        (01-Jan-2022 to 27-Jul-2022)
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="text-right mb-2">
+                                            <div class="dropdown">
+                                                <form method="post">
+                                                    <button class="btn btn-secondary" data-toggle="dropdown"
+                                                        aria-haspopup="true" aria-expanded="false"><span>This
+                                                            Year</span> <i
+                                                            class="fa fa-fw fa-caret-down"></i></button>
+                                                    <!-- .dropdown-menu -->
+                                                    <button class="btn btn-info">Go</button>
+                                                    <!-- .dropdown-menu -->
+                                                    <div
+                                                        class="dropdown-menu dropdown-menu-right dropdown-menu-md stop-propagation">
+                                                        <div class="dropdown-arrow"></div>
+                                                        <!-- .custom-control -->
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="dpYear" name="dpFilter" value="This Year"
+                                                                checked=""> <label
+                                                                class="custom-control-label d-flex justify-content-between"
+                                                                for="dpYear"><span>This Year</span> <span
+                                                                    class="text-muted">2022</span></label>
+                                                        </div><!-- /.custom-control -->
+                                                        <!-- .custom-control -->
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input"
+                                                                id="dpCustom" name="dpFilter" value="Custom">
+                                                            <label class="custom-control-label"
+                                                                for="dpCustom">Custom</label>
+                                                            <div class="custom-control-hint my-1">
+                                                                <!-- datepicker:range -->
+                                                                <input type="text" name="custom_date" value=""
+                                                                    class="form-control flatpickr-input"
+                                                                    data-toggle="flatpickr" data-mode="range"
+                                                                    data-date-format="d-m-Y"
+                                                                    readonly="readonly">
+                                                                <!-- /datepicker:range -->
+                                                            </div>
+                                                        </div><!-- /.custom-control -->
+                                                    </div><!-- /.dropdown-menu -->
+                                                </form>
+                                            </div><!-- /.dropdown -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="card card-body">
+                                        <div class="card-header p-0 mb-3 pb-2">Policies</div>
+                                        <!-- legend -->
+                                        <ul class="list-inline small">
+                                            <li class="list-inline-item">
+                                                <i class="fa fa-fw fa-circle text-teal"></i> OK Policies
+                                            </li>
+                                            <li class="list-inline-item">
+                                                <i class="fa fa-fw fa-circle text-red"></i> Cancelled Policies
+                                            </li>
+                                        </ul><!-- /legend -->
+                                        <div class="chartjs" style="height: 268px">
+                                            <div class="chartjs-size-monitor">
+                                                <div class="chartjs-size-monitor-expand">
+                                                    <div class=""></div>
+                                                </div>
+                                                <div class="chartjs-size-monitor-shrink">
+                                                    <div class=""></div>
+                                                </div>
+                                            </div>
+                                            <canvas id="canvas-total-policy"
+                                                style="display: block; width: 771px; height: 268px;" width="771"
+                                                height="268" class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+                                <div class="row">
+                                    <div class="card card-body">
+                                        <div class="card-header p-0 mb-3 pb-2">Commission</div>
+                                        <div class="chartjs" style="height: 300px">
+                                            <div class="chartjs-size-monitor">
+                                                <div class="chartjs-size-monitor-expand">
+                                                    <div class=""></div>
+                                                </div>
+                                                <div class="chartjs-size-monitor-shrink">
+                                                    <div class=""></div>
+                                                </div>
+                                            </div>
+                                            <canvas id="canvas-total-earning" width="771" height="300"
+                                                style="display: block; width: 771px; height: 300px;"
+                                                class="chartjs-render-monitor"></canvas>
+                                        </div>
+                                    </div><!-- /.card -->
+                                </div>
+                            </div>
+                            <div class="col-xl-3">
+                                <div class="row">
+                                    <div class="col-xl-12">
+                                        <div class="card card-fluid">
+                                            <!-- .card-header -->
+                                            <div class="card-header"> Subscription</div><!-- /.card-header -->
+                                            <!-- .card-body -->
+                                            <div class="card-body">
+                                                <h2 class="metric-label">Expire On</h2>
+                                                <p class="metric-value h3">
+                                                    <sub><i class="icofont icofont-ui-calendar"></i></sub>
+                                                    <span class="value">15/08/2022</span>
+                                                </p>
+                                                <p class="pt-3">
+                                                    <small class="text-muted"> (19 days left)</small>
+                                                </p>
+                                            </div><!-- /.card-body -->
+                                        </div><!-- /.card -->
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="card">
+                                            <div class="card-header"> Storage Overview</div>
+                                            <div class="card-body">
+                                                <div class="card bg-light">
+                                                    <div class="card-body">
+                                                        <span><i class="fa fa-hdd text-info"
+                                                                aria-hidden="true"></i> Storage Usage</span>
+                                                        <div title="0%" class="progress progress-lg mb-1">
+                                                            <div class="progress-bar bg-primary"
+                                                                role="progressbar" style="width: 0%;"
+                                                                aria-valuenow="0" aria-valuemin="0"
+                                                                aria-valuemax="100"> 0% </div>
+                                                        </div>
+                                                        <p class="text-muted">3 GB free of 3 GB</p>
+                                                    </div>
+                                                </div>
+                                                <dl class="d-flex justify-content-between mb-0">
+                                                    <dt class="text-left">
+                                                        <div class="tile">
+                                                            <i class="icofont-file-alt text-info"></i>
+                                                        </div>
+                                                        <span class="mr-2">New Policy</span>
+                                                    </dt>
+                                                    <dd class="text-right">
+                                                        0 MB </dd>
+                                                </dl>
+                                                <hr>
+                                                <dl class="d-flex justify-content-between">
+                                                    <dt class="text-left">
+                                                        <div class="tile">
+                                                            <i class="icofont-file-alt text-info"></i>
+                                                        </div>
+                                                        <span class="mr-2">Previous Policy</span>
+                                                    </dt>
+                                                    <dd class="text-right">
+                                                        0 MB </dd>
+                                                </dl>
+                                                <hr>
+                                                <dl class="d-flex justify-content-between">
+                                                    <dt class="text-left">
+                                                        <div class="tile">
+                                                            <i class="icofont-file-alt text-info"></i>
+                                                        </div>
+                                                        <span class="mr-2">RC<small> (Registration
+                                                                Certificate)</small></span>
+                                                    </dt>
+                                                    <dd class="text-right">
+                                                        0 MB </dd>
+                                                </dl>
+                                                <hr>
+                                                <dl class="d-flex justify-content-between">
+                                                    <dt class="text-left">
+                                                        <div class="tile">
+                                                            <i class="icofont-file-alt text-info"></i>
+                                                        </div>
+                                                        <span class="mr-2">Agent Documents</span>
+                                                    </dt>
+                                                    <dd class="text-right">
+                                                        0 MB </dd>
+                                                </dl>
+                                                <hr>
+                                                <dl class="d-flex justify-content-between">
+                                                    <dt class="text-left">
+                                                        <div class="tile">
+                                                            <i class="icofont-file-alt text-info"></i>
+                                                        </div>
+                                                        <span class="mr-2">Payment Screenshots</span>
+                                                    </dt>
+                                                    <dd class="text-right">
+                                                        0 MB </dd>
+                                                </dl>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.section-block -->
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+    </div><!-- /.wrapper -->
+</main><!-- /.app-main -->
+{%endblock%}

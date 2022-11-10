@@ -1,0 +1,69 @@
+{%extends "base.html"%}
+{%block content%}
+{% load static %}
+<main class="app-main"><!-- .app-main -->
+    <div class="wrapper"><!-- .wrapper -->
+        <div class="page "><!-- .page -->
+            <div class="page-inner"> <!-- .page-inner -->
+                <header class="page-title-bar"><!-- .page-title-bar -->
+                    <div class="d-flex justify-content-between align-items-center"><!-- .d-flex -->
+                        <!-- .breadcrumb -->
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item active">
+                                    <a href="{% url 'bima_policy:vehi' %}"><i class="breadcrumb-icon fa fa-angle-left mr-2"></i>Back</a>
+                                </li>
+                            </ol>
+                        </nav><!-- /.breadcrumb -->
+                </div><!-- /.d-flex -->
+                <!-- grid row -->
+                <div class="row text-center text-sm-left">
+                </div>
+                </header>
+                <!-- .page-section -->
+                <div class="col-md-5 mb-3">
+                    <!-- grid row -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h6 id="ModalLabel" class="modal-title">Update Vehicle Category</h6>
+                        </div>
+                        <form method="post" autocomplete="off" data-parsley-validate="true" name="frmvcedit" novalidate="">
+                            {% csrf_token %}
+                            <div class="modal-body">
+                                <div class="form-group">                                    <label>Vehicle Make By <abbr title="Required" class="text-danger">*</abbr></label>
+                                    <select name="vehicle_makeby" class="custom-select select2 select2-hidden-accessible">
+                                      <option>Choose...</option>
+                                      {% for value in data %}
+                                      <option value="{{value.company}}">{{value.company}}</option>
+                                      {%endfor%}
+                                    </select>
+                                    
+                                  </div>
+                                <div class="form-group">
+                                    
+                                    {% for value in data1 %}
+                                    <label class="col-form-label">Model Name<em class="text-danger">*</em></label>
+                                    <input type="text" class="form-control" data-parsley-required="true" name="model" value="{{value.model}}">
+                                    {% endfor %}
+                                    <input type="hidden" id="vcid" name="vcid">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Status</label>
+                                    <select name="status_update" id="status_update" class="custom-select">
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary w-100p" data-dismiss="modal">Close</button>
+                                <button type="submit" name="vm_update" class="btn btn-primary w-100p">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.page-section -->
+            </div><!-- /.page-inner -->
+        </div><!-- /.page -->
+    </div><!-- /.wrapper -->
+</main>
+{%endblock%}
